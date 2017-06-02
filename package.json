@@ -1,0 +1,22 @@
+{
+  "name": "piweather-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-measure": "^2.0.2",
+    "recharts": "^1.0.0-alpha.0",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

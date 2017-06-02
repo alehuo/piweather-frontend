@@ -1,0 +1,238 @@
+.App {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*2-column layout*/
+.cards {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: top;
+  justify-content: center;
+}
+
+/*left and right sections*/
+.left,
+.right {
+  flex: 1 auto;
+}
+
+/*temperature, pressure and humidity widths*/
+.temperatureDashboard, .pressureHumidityDashboard {
+  width: 100%;
+}
+
+/*pressure & humidity container*/
+.pressureHumidityDashboard {
+  height: 50px;
+  line-height: 50px;
+}
+
+/*current temperature & weather forecast containers*/
+.currentTemperature, .weatherForecast {
+  display: inline-block;
+  text-align: center;
+  width: 50%;
+  height: 80%;
+}
+
+/*current temperature*/
+.currentTemperatureReading {
+  font-size: 93pt;
+}
+
+/*current temperature unit*/
+.currentTemperatureUnit {
+  font-size: 34pt;
+}
+
+/*low,avg,high temperature container*/
+.mlhTemperature {
+  width: 100%;
+  height: 20%;
+}
+
+/*lov,avg,high temperature child containers*/
+.mlhTemperatureChild {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-size: 10pt;
+}
+
+/*reading*/
+.mlhTemperatureChildReading {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.pressureHumidityChild {
+  display: inline-block;
+  width: 50%;
+}
+
+.reading {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.dashboard {
+  background-color: #303F9F;
+  height: 250px;
+  min-width: 390px;
+  max-width: 550px;
+}
+
+.history,
+.rssFeed {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.history,
+.dashboard,
+.rssFeed {
+  margin: 8px 4px 4px 4px;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.history {
+  color: #424242;
+}
+
+.newsPosts {
+  width: 99%;
+  height: 420px;
+  overflow-y: scroll;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weatherIcon {
+  width: 100%;
+  display: block;
+  font-size: 50pt;
+}
+
+.menubar {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+}
+
+.menuEntry {
+  display: inline-block;
+  height: 100%;
+  width: 33.333%;
+  text-align: center;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: #C9C9C9;
+  font-size: 11pt;
+  text-transform: uppercase;
+}
+
+.menuEntry:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+}
+
+.current {
+  box-shadow: inset 0 -5px 0 #FAFAFA;
+  color: #FFFFFF;
+}
+
+.historyContent {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.appTitle {
+  font-family: Rochester, Tahoma;
+  font-size: 38pt;
+}
+
+.text {
+  color: #FAFAFA;
+}
+
+.newsPost {
+  display: block;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 2px;
+  padding-left: 14px;
+  padding-right: 14px;
+  height: 60px;
+  line-height: 60px;
+  background-color: rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.newsPost:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.newsPostTitle {
+  display: block;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.newsPost a {
+  text-decoration: none;
+}
+
+.rssFeedTitle {
+  width: 100%;
+  height: 60px;
+  font-size: 17pt;
+  line-height: 60px;
+}
+
+
+/* Mobile font scaling*/
+
+@media (max-width: 580px) {
+  .dashboard,
+  .history {
+    width: 98%;
+    font-size: 3vw;
+  }
+  .menuEntry {
+    font-size: 3vw;
+  }
+  .currentTemperatureReading {
+    font-size: 20vw;
+  }
+  .currentTemperatureUnit {
+    font-size: 10vw;
+  }
+  .weatherIcon {
+    font-size: 10vw;
+  }
+  .rssFeed {
+    width: 98%;
+  }
+  .cards {
+    flex-direction: column;
+  }
+  .left,
+  .right {
+    flex-basis: auto;
+  }
+}
