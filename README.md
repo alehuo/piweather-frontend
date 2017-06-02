@@ -3,9 +3,11 @@
 
 ## Introduction ##
 
-PiWeather is a weather station application built using modern web technologies. It enables you to log and monitor weather data.
+PiWeather is a Weather Station Application built with modern web technologies. It enables you to log and monitor weather data. 
 
 You can use online data sources for weather data, or plug in some sensors to your Pi and log it your self - in real time.
+
+![](dashboard.png)
 
 The application polls sensors plugged into the Pi in 5 minute intervals and saves the data for later use. Currently we only log temperature and humidity.
 At the end of each day the Pi analyzes the captured data and sends emails to predefined e-mail addresses.
@@ -13,7 +15,7 @@ The email message will include day's minimum, maximum and average temperatures a
 
 A dashboard has been implemented so you can check your weather any time and anywhere. 
 
-A RESTful API is also there - why not use it in the future?
+A RESTful API is also (almost) there - why not use it in the future?
 
 ## Technical stuff ##
 
@@ -44,4 +46,5 @@ A RESTful API is also there - why not use it in the future?
 
 - [ ] Restful api
 - [ ] Dashboard CSS cleanup
+- [ ] Make weather forecast work
 - [ ] Hook Dashboard to back end
