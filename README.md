@@ -41,6 +41,8 @@ A RESTful API is also (almost) there - why not use it in the future?
 * Connect your temperature sensor to your Raspberry Pi
 * Clone the repo & npm install
 * Configure the sensor settings to point to the correct GPIO pin & sensor type (if you use a sensor that is not DHT22, with a few modifications you will get it working).
+* Start Redis server
+* *npm start*
 
 ## To do ##
 
