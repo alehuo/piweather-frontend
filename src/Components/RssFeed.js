@@ -20,7 +20,7 @@ class RssFeed extends Component {
         axios.get(this.props.url).then((res) => {
             var parseString = xml2js.parseString;
             parseString(res.data, (error, result) => {
-                var news = result.rss.channel[0].item;
+                var news = result.rss.channel[this.props.channel].item;
                 this.setState({
                     xmlData: news
                 });

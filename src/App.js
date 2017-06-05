@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import DataDashboard from './DataDashboard.js'
-import HistoryDashboard from './HistoryDashboard.js';
-import RssFeed from './RssFeed.js'
+import DataDashboard from './Components/DataDashboard.js'
+import HistoryDashboard from './Components/HistoryDashboard.js';
+import RssFeed from './Components/RssFeed.js'
+import Config from './Config/appConfig.js'
+import axios from 'axios'
 
+let config = null;
+
+/**
+ * ENV
+ */
+if(process.env.NODE_ENV === 'production') {
+  config = Config.production;
+} else if(process.env.NODE_ENV === 'development'){
+  config = Config.development;
+}
 
 /**
  * Humidity data
@@ -44,16 +56,76 @@ const pressData = [
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentTemp: 99,
+      minTemp: 0,
+      avgTemp: 0,
+      maxTemp: 0,
+      humidity: 85,
+      pressure: 1020,
+      weatherCode: 3200,
+      lastUpdate: 'N/A'
+    };
+  }
+
+  
+  componentDidMount () {
+    this.updateWeather();
+    console.log('Updating weather and settings a 5-minute timer.');
+    setInterval(() => this.updateWeather(),300000);
+  }
+
+  updateWeather = () => {
+    var sprintf = require("sprintf-js").sprintf;
+    var query = config.weather.WEATHER_QUERY;
+    query = sprintf(query,config.weather.WOEID);
+    axios.get('https://query.yahooapis.com/v1/public/yql', {
+      params: {
+       q: query,
+       format: 'json' 
+      }
+    }).then((res) => {
+      var atmosphere = res.data.query.results.channel.atmosphere;
+      var temperature = res.data.query.results.channel.item.condition.temp;
+      var weatherCode = res.data.query.results.channel.item.condition.code;
+      var lastUpdate = res.data.query.results.channel.lastBuildDate;
+      this.setState({currentTemp : temperature, humidity: atmosphere.humidity, lastUpdate: lastUpdate, weatherCode: weatherCode});
+      console.log('Weather data updated');
+      console.log(atmosphere, temperature, weatherCode, lastUpdate);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+  
+
   render() {
     return (
       <div className="App">
         <div className="appTitle text">PiWeather</div>
         <div className="cards text">
         <div className="left">
-          <DataDashboard currentTemperature={'25.8'} minimumTemperature={'-8.5'} averageTemperature={'17.6'} maximumTemperature={'27.1'} currentHumidity={'88'} currentPressure={'1013'}/>
-          <HistoryDashboard temperatureData={tempData} pressureData={pressData} humidityData={humidData}/></div>
+          <DataDashboard 
+            currentTemperature={this.state.currentTemp} 
+            minimumTemperature={this.state.minTemp} 
+            averageTemperature={this.state.avgTemp} 
+            maximumTemperature={this.state.maxTemp} 
+            currentHumidity={this.state.humidity} 
+            currentPressure={this.state.pressure} 
+            weatherStatus={this.state.weatherStatus} 
+            weatherCode={this.state.weatherCode}
+            lastUpdate={this.state.lastUpdate}/>
+          <HistoryDashboard 
+            temperatureData={tempData} 
+            pressureData={pressData} 
+            humidityData={humidData}/></div>
         <div className="right"></div>
-          <RssFeed title="MTV.fi" url="http://www.mtv.fi/api/feed/rss/uutiset_saa"/>
+          <RssFeed 
+            title={config.rss.TITLE} 
+            url={config.rss.FEED_URL} 
+            channel={config.rss.CHANNEL_ID}/>
         </div>
       </div>
     );

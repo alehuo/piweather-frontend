@@ -81,7 +81,7 @@
 
 .dashboard {
   background-color: #303F9F;
-  height: 250px;
+  height: 290px;
   min-width: 390px;
   max-width: 550px;
 }
@@ -202,6 +202,13 @@
   height: 60px;
   font-size: 17pt;
   line-height: 60px;
+}
+
+.dataDashboardFooter {
+  height: 40px;
+  line-height: 40px;
+  color: #C9C9C9;
+  font-size: 8pt;
 }
 
 

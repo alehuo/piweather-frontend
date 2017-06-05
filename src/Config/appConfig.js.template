@@ -1,0 +1,24 @@
+module.exports = {
+    development: {
+        weather: {
+            WEATHER_QUERY: "",
+            WOEID: -1
+        },
+        rss: {
+            TITLE: '',
+            FEED_URL: '',
+            CHANNEL_ID: 0
+        }
+    },
+    production: {
+        weather: {
+            WEATHER_QUERY: "",
+            WOEID: -1
+        },
+        rss: {
+            TITLE: '',
+            FEED_URL: '',
+            CHANNEL_ID: 0
+        }
+    }
+}

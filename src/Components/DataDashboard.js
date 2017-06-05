@@ -1,9 +1,17 @@
 //import liraries
 import React, { Component } from 'react';
+import moment from 'moment'
+import weatherCodes from '../Config/weatherCodes'
 
 // create a component
 class TemperatureDashboard extends Component {
+    
     render() {
+        var currentWeather = weatherCodes[this.props.weatherCode];
+        var weatherIcon = 'wi';
+        weatherIcon += ' ' + currentWeather.icon;
+        weatherIcon += ' weatherIcon';
+        console.log(weatherIcon)
         return (
             <div className="dashboard dataElement">
                 <div className="temperatureDashboard">
@@ -13,7 +21,7 @@ class TemperatureDashboard extends Component {
                             <span className="currentTemperatureUnit">&deg;C</span>
                         </div>
                         <div className="weatherForecast">
-                            <i className="wi wi-day-cloudy weatherIcon"></i><span>Partially cloudy</span>
+                            <i className={weatherIcon}></i><span>{currentWeather.title}</span>
                         </div>
                     </div>
                     <div className="mlhTemperature">
@@ -34,6 +42,7 @@ class TemperatureDashboard extends Component {
                         <span className="unit"> hPa</span>
                     </span>
                 </div>
+                <div className="dataDashboardFooter">Data from Yahoo! Weather API. Last update {moment(Date(this.props.lastUpdate)).format('MMMM Do, H:mm:ss')}</div>
             </div>
         );
     }
