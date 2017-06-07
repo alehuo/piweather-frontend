@@ -60,25 +60,31 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTemp: 99,
+      currentTemp: 0,
       minTemp: 0,
       avgTemp: 0,
       maxTemp: 0,
-      humidity: 85,
-      pressure: 1020,
+      humidity: 100,
+      pressure: 1000,
       weatherCode: 3200,
-      lastUpdate: 'N/A'
+      lastUpdate: 'N/A',
+      city: 'N/A',
+      region: 'N/A'
     };
   }
 
-  
   componentDidMount () {
+    //Update weather
     this.updateWeather();
     console.log('Updating weather and settings a 5-minute timer.');
+    //Set weather update task
     setInterval(() => this.updateWeather(),300000);
   }
 
   updateWeather = () => {
+    /*
+    In the future the dashboard will fetch its data from a Node.js back end.
+    */
     var sprintf = require("sprintf-js").sprintf;
     var query = config.weather.WEATHER_QUERY;
     query = sprintf(query,config.weather.WOEID);
@@ -92,7 +98,16 @@ class App extends Component {
       var temperature = res.data.query.results.channel.item.condition.temp;
       var weatherCode = res.data.query.results.channel.item.condition.code;
       var lastUpdate = res.data.query.results.channel.lastBuildDate;
-      this.setState({currentTemp : temperature, humidity: atmosphere.humidity, lastUpdate: lastUpdate, weatherCode: weatherCode});
+      var city = res.data.query.results.channel.location.city;
+      var region = res.data.query.results.channel.location.region;
+      this.setState({
+        currentTemp: temperature,
+        humidity: atmosphere.humidity,
+        lastUpdate: lastUpdate,
+        weatherCode: weatherCode,
+        city: city,
+        region: region
+      });
       console.log('Weather data updated');
       console.log(atmosphere, temperature, weatherCode, lastUpdate);
     }).catch((err) => {
@@ -108,6 +123,7 @@ class App extends Component {
         <div className="cards text">
         <div className="left">
           <DataDashboard 
+            location={this.state.city + ', ' + this.state.region}
             currentTemperature={this.state.currentTemp} 
             minimumTemperature={this.state.minTemp} 
             averageTemperature={this.state.avgTemp} 

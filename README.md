@@ -41,6 +41,9 @@ A RESTful API is also (almost) there - why not use it in the future?
 * Connect your temperature sensor to your Raspberry Pi
 * Clone the repo & npm install
 * Configure the sensor settings to point to the correct GPIO pin & sensor type (if you use a sensor that is not DHT22, with a few modifications you will get it working).
+* Open Config -folder from the dashboard and rename 'appConfig.js.template' to 'appConfig.js' and set your WOEID & RSS Feed settings
+    * WOEID for Helsinki is 565346
+    * API url for Finnish Weather News (MTV.fi): http://www.mtv.fi/api/feed/rss/uutiset_saa
 * Start Redis server
 * *npm start*
 

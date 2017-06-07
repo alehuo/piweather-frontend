@@ -48,11 +48,11 @@ module.exports = {
     },
     '11': {
         title: 'Showers',
-        icon: ''
+        icon: 'wi-day-showers'
     },
     '12': {
         title: 'Showers',
-        icon: ''
+        icon: 'wi-day-showers'
     },
     '13': {
         title: 'Snow flurries',

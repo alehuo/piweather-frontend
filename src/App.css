@@ -3,7 +3,9 @@
   margin-bottom: 10px;
 }
 
+
 /*2-column layout*/
+
 .cards {
   display: inline-flex;
   flex-direction: row;
@@ -12,48 +14,66 @@
   justify-content: center;
 }
 
+
 /*left and right sections*/
+
 .left,
 .right {
   flex: 1 auto;
 }
 
+
 /*temperature, pressure and humidity widths*/
-.temperatureDashboard, .pressureHumidityDashboard {
+
+.temperatureDashboard,
+.pressureHumidityDashboard {
   width: 100%;
 }
 
+
 /*pressure & humidity container*/
+
 .pressureHumidityDashboard {
   height: 50px;
   line-height: 50px;
 }
 
+
 /*current temperature & weather forecast containers*/
-.currentTemperature, .weatherForecast {
+
+.currentTemperature,
+.weatherForecast {
   display: inline-block;
   text-align: center;
   width: 50%;
-  height: 80%;
+  height: 100%;
 }
 
+
 /*current temperature*/
+
 .currentTemperatureReading {
   font-size: 93pt;
 }
 
+
 /*current temperature unit*/
+
 .currentTemperatureUnit {
   font-size: 34pt;
 }
 
+
 /*low,avg,high temperature container*/
+
 .mlhTemperature {
   width: 100%;
   height: 20%;
 }
 
+
 /*lov,avg,high temperature child containers*/
+
 .mlhTemperatureChild {
   display: inline-block;
   width: 33%;
@@ -63,7 +83,9 @@
   font-size: 10pt;
 }
 
+
 /*reading*/
+
 .mlhTemperatureChildReading {
   font-size: 16pt;
   font-weight: bold;
@@ -81,7 +103,6 @@
 
 .dashboard {
   background-color: #303F9F;
-  height: 290px;
   min-width: 390px;
   max-width: 550px;
 }
@@ -117,8 +138,14 @@
 
 .weatherIcon {
   width: 100%;
+  margin-bottom: 16px;
   display: block;
-  font-size: 50pt;
+  font-size: 40pt;
+}
+
+.weatherForecastDesc {
+  display: block;
+  height: 30%;
 }
 
 .menubar {
@@ -139,6 +166,7 @@
   color: #C9C9C9;
   font-size: 11pt;
   text-transform: uppercase;
+  font-family: Roboto;
 }
 
 .menuEntry:hover {
@@ -197,11 +225,15 @@
   text-decoration: none;
 }
 
-.rssFeedTitle {
-  width: 100%;
+.rssFeedTitle,
+.dashboardTitle {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
   height: 60px;
   font-size: 17pt;
   line-height: 60px;
+  text-align: left;
 }
 
 .dataDashboardFooter {

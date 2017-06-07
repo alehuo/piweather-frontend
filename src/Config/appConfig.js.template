@@ -1,23 +1,23 @@
 module.exports = {
     development: {
         weather: {
-            WEATHER_QUERY: "",
+            WEATHER_QUERY: "select * from weather.forecast where woeid = %d and u='c'",
             WOEID: -1
         },
         rss: {
-            TITLE: '',
-            FEED_URL: '',
+            TITLE: 'Feed title',
+            FEED_URL: 'Feed url',
             CHANNEL_ID: 0
         }
     },
     production: {
         weather: {
-            WEATHER_QUERY: "",
+            WEATHER_QUERY: "select * from weather.forecast where woeid = %d and u='c'",
             WOEID: -1
         },
         rss: {
-            TITLE: '',
-            FEED_URL: '',
+            TITLE: 'Feed title',
+            FEED_URL: 'Feed url',
             CHANNEL_ID: 0
         }
     }
