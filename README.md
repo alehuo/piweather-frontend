@@ -5,57 +5,47 @@
 
 PiWeather is a Weather Station Application built with modern web technologies. It enables you to log and monitor weather data. 
 
-You can use online data sources for weather data, or plug in some sensors to your Pi and log it your self - in real time.
-
 ![](dashboard.png)
 
-The application polls sensors plugged into the Pi in 5 minute intervals and saves the data for later use. Currently we only log temperature and humidity.
-At the end of each day the Pi analyzes the captured data and sends emails to predefined e-mail addresses.
-The email message will include day's minimum, maximum and average temperatures and humidity.
-
-A dashboard has been implemented so you can check your weather any time and anywhere. 
-
-A RESTful API is also (almost) there - why not use it in the future?
+The [back end](https://github.com/alehuo/piweather-backend) polls sensors plugged into the Pi in 5 minute intervals and saves the data for later use. At the same time local weather forecast is fetched from the web.
 
 ## Technical stuff ##
 
-* Data is stored on an SQLite database (you may use any database you like) and Redis is used to cache it to improve performance. *In the near future the app will switch using Sequelize for easier database development.*
 * Dashboard is made using React.js
-* Back end is made using Node.js
-* Measurements are scheduled with node-schedule
-* The DHT22 sensor is used to log outdoor temperature & humidity. In addition, a MCP3002 D2A converter is wired to a TMP36 analog temperature sensor to log indoor temperature.
-* Currently the only sensor that logs data is the DHT22.
+
 
 ## Requirements ##
 
-* A Raspberry Pi (Any model will do, latest HW version recommended)
-* BCM2835 library for sensor usage
-* A suitable temperature sensor that can interact with the Node.js backend (DHT-22, for example)
-* Redis server
 * Node.js
-
+* A Raspberry pi with [piweather-backend]((https://github.com/alehuo/piweather-backend)) installed (Follow the instructions there)
 
 ## Installation instructions ##
 
-### Dashboard ###
-
-* Open Config -folder from the dashboard and rename 'appConfig.js.template' to 'appConfig.js' and set your WOEID & RSS Feed settings
-    * WOEID for Helsinki is 565346
-    * API url for Finnish Weather News (MTV.fi): http://www.mtv.fi/api/feed/rss/uutiset_saa
+* Open Config -folder from the dashboard and rename 'appConfig.js.template' to 'appConfig.js' and set your back end URL
 * *npm start*
 
-### Back end ###
+**Note: Back end is designed to run on a Pi, you can choose where to host the front end.**
 
-* Install Redis server, Node.js and the BCM2835 library
-* Connect your temperature sensor to your Raspberry Pi
-* Clone the repo & npm install
-* Configure the sensor settings to point to the correct GPIO pin & sensor type (if you use a sensor that is not DHT22, with a few modifications you will get it working).
-* Start Redis server
-* *npm start*
 
 ## To do ##
 
-- [ ] Restful api
 - [ ] Dashboard CSS cleanup
 - [ ] Make weather forecast work
 - [ ] Hook Dashboard to back end
+
+## License ##
+
+GNU GPL v3.0
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
