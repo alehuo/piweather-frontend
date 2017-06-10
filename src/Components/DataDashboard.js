@@ -14,7 +14,6 @@ class TemperatureDashboard extends Component {
         console.log(weatherIcon)
         return (
             <div className="dashboard dataElement">
-                <div className="dashboardTitle"><i className="fa fa-map-marker"></i><span> {this.props.location}</span></div>
                 <div className="temperatureDashboard">
                     <div className="dashboardWrapper">
                         <div className="currentTemperature">

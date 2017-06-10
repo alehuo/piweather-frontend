@@ -67,9 +67,7 @@ class App extends Component {
       humidity: 100,
       pressure: 1000,
       weatherCode: 3200,
-      lastUpdate: 'N/A',
-      city: 'N/A',
-      region: 'N/A'
+      lastUpdate: 'N/A'
     };
   }
 
@@ -78,41 +76,22 @@ class App extends Component {
     this.updateWeather();
     console.log('Updating weather and settings a 5-minute timer.');
     //Set weather update task
-    setInterval(() => this.updateWeather(),300000);
+    //setInterval(() => this.updateWeather(),300000);
+    setInterval(() => this.updateWeather(),5000);
   }
 
   updateWeather = () => {
-    /*
-    In the future the dashboard will fetch its data from a Node.js back end.
-    */
-    var sprintf = require("sprintf-js").sprintf;
-    var query = config.weather.WEATHER_QUERY;
-    query = sprintf(query,config.weather.WOEID);
-    axios.get('https://query.yahooapis.com/v1/public/yql', {
-      params: {
-       q: query,
-       format: 'json' 
-      }
-    }).then((res) => {
-      var atmosphere = res.data.query.results.channel.atmosphere;
-      var temperature = res.data.query.results.channel.item.condition.temp;
-      var weatherCode = res.data.query.results.channel.item.condition.code;
-      var lastUpdate = res.data.query.results.channel.lastBuildDate;
-      var city = res.data.query.results.channel.location.city;
-      var region = res.data.query.results.channel.location.region;
+    axios.get(config.backend.URL).then((res) => {
       this.setState({
-        currentTemp: temperature,
-        humidity: atmosphere.humidity,
-        lastUpdate: lastUpdate,
-        weatherCode: weatherCode,
-        city: city,
-        region: region
+        currentTemp: res.data.outerTemperature,
+        humidity: res.data.outerHumidity,
+        pressure: res.data.outerPressure,
+        weatherCode: res.data.weatherCode
       });
-      console.log('Weather data updated');
-      console.log(atmosphere, temperature, weatherCode, lastUpdate);
+      console.log(res);
     }).catch((err) => {
-      console.log(err);
-    });
+      console.error(err);
+    }); 
   }
   
 
@@ -123,7 +102,6 @@ class App extends Component {
         <div className="cards text">
         <div className="left">
           <DataDashboard 
-            location={this.state.city + ', ' + this.state.region}
             currentTemperature={this.state.currentTemp} 
             minimumTemperature={this.state.minTemp} 
             averageTemperature={this.state.avgTemp} 

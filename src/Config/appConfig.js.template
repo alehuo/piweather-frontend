@@ -1,8 +1,7 @@
 module.exports = {
     development: {
-        weather: {
-            WEATHER_QUERY: "select * from weather.forecast where woeid = %d and u='c'",
-            WOEID: -1
+        backend: {
+            URL: ''
         },
         rss: {
             TITLE: 'Feed title',
@@ -11,9 +10,8 @@ module.exports = {
         }
     },
     production: {
-        weather: {
-            WEATHER_QUERY: "select * from weather.forecast where woeid = %d and u='c'",
-            WOEID: -1
+        backend: {
+            URL: ''
         },
         rss: {
             TITLE: 'Feed title',
