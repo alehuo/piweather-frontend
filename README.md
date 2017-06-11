@@ -33,6 +33,7 @@ The [back end](https://github.com/alehuo/piweather-backend) polls sensors plugge
 - [x] Make weather forecast work
 - [x] Hook Dashboard to back end
 - [ ] Make min, max and avg temperatures work
+
 ## License ##
 
 GNU GPL v3.0
